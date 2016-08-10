@@ -1,6 +1,6 @@
 package com.witt.chess;
 
-public class Hook implements Piece {
+public class Rook implements Piece {
 
     @Override
     public boolean isValidPosition(Board board, int x, int y) {

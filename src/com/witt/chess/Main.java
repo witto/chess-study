@@ -5,9 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
+
     public static void main(final String[] args) {
-        List<Piece> pieces = new ArrayList<Piece>(Arrays.asList(new King(), new King(), new Hook()));
+        List<Piece> pieces = new ArrayList<Piece>(Arrays.asList(new King(), new King(), new Rook()));
         Board board = new Board(3, 3);
+        place(board, pieces);
+
+        pieces = new ArrayList<Piece>(Arrays.asList(new Rook(), new Rook(), new Knight(), new Knight(), new Knight(), new Knight()));
+        board = new Board(4, 4);
         place(board, pieces);
     }
 
