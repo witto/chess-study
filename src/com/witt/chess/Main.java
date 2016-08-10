@@ -23,17 +23,19 @@ public class Main {
         place(board, pieces, solutions);
         System.out.println(solutions);
 
+        long start = System.currentTimeMillis();
         pieces = new ArrayList<>(Arrays.asList(KING, KING, QUEEN, QUEEN, BISHOP, BISHOP, KNIGHT));
-        board = new Board(6, 6);
-        solutions = new HashSet<>();
+        board = new Board(7, 7);
+        solutions = new HashSet<>(4_000_000);
         place(board, pieces, solutions);
         System.out.println(solutions.size());
         //System.out.println(solutions);
+        System.out.println(System.currentTimeMillis() - start);
     }
 
     private static void place(Board board, List<Piece> pieces, Set<Board> solutions) {
         if (pieces.isEmpty()){
-            solutions.add(new Board(board));
+            if (!solutions.contains(board)) solutions.add(new Board(board));
             if (solutions.size() % 10000 == 0) System.out.println(solutions.size());
             return;
         }

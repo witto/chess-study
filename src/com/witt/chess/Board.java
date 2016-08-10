@@ -5,21 +5,24 @@ import java.util.Arrays;
 public class Board {
     public final int w;
     public final int h;
-    private final int[][] marks;
+    private final byte[][] marks;
     private final Piece[][] board;
 
     public Board(int w, int h) {
         this.w = w;
         this.h = h;
-        marks = new int[w][h];
+        marks = new byte[w][h];
         board = new Piece[w][h];
     }
 
     public Board(Board board) {
-        this(board.w, board.h);
+        this.w = board.w;
+        this.h = board.h;
+        this.board = new Piece[w][h];
+        this.marks = null;
         for (int i = 0; i < h; i++) {
             System.arraycopy(board.board[i], 0, this.board[i], 0, w);
-            System.arraycopy(board.marks[i], 0, this.marks[i], 0, w);
+            //System.arraycopy(board.marks[i], 0, this.marks[i], 0, w);
         }
     }
 
@@ -62,9 +65,11 @@ public class Board {
             for (int j = 0; j < w; j++) {
                 sb.append(board[i][j] == null ? "." : board[i][j]);
             }
-            sb.append(" | ");
-            for (int j = 0; j < w; j++) {
-                sb.append(marks[i][j]);
+            if (marks != null) {
+                sb.append(" | ");
+                for (int j = 0; j < w; j++) {
+                    sb.append(marks[i][j]);
+                }
             }
             sb.append("\n");
         }
