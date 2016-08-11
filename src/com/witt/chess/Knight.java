@@ -4,7 +4,7 @@ public class Knight implements Piece {
 
     public static final Knight KNIGHT = new Knight();
 
-    private int[][] moves = {
+    private static final int[][] moves = {
             {-2, -1},
             {-1, -2},
             { 1, -2},

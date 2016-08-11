@@ -22,7 +22,6 @@ public class Board {
         this.marks = null;
         for (int i = 0; i < h; i++) {
             System.arraycopy(board.board[i], 0, this.board[i], 0, w);
-            //System.arraycopy(board.marks[i], 0, this.marks[i], 0, w);
         }
     }
 
