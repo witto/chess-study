@@ -20,8 +20,8 @@ public class Board {
         this.h = board.h;
         this.board = new Piece[w][h];
         this.marks = null;
-        for (int i = 0; i < h; i++) {
-            System.arraycopy(board.board[i], 0, this.board[i], 0, w);
+        for (int i = 0; i < w; i++) {
+            System.arraycopy(board.board[i], 0, this.board[i], 0, h);
         }
     }
 
@@ -60,14 +60,14 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("\n");
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                sb.append(board[i][j] == null ? "." : board[i][j]);
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                sb.append(board[i][j] == null ? "." : board[i][j]).append(" ");
             }
             if (marks != null) {
                 sb.append(" | ");
-                for (int j = 0; j < w; j++) {
-                    sb.append(marks[i][j]);
+                for (int j = 0; j < h; j++) {
+                    sb.append(marks[i][j]).append(" ");
                 }
             }
             sb.append("\n");
