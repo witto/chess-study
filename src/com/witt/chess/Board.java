@@ -59,7 +59,7 @@ public class Board {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("\n");
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
                 sb.append(board[i][j] == null ? "." : board[i][j]).append(" ");

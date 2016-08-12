@@ -12,20 +12,62 @@ public class Main {
 
     public static void main(final String[] args) {
 
-        Board board = new Board(3, 3);
-        Set<Board> solutions = PiecesPlacer.place(Arrays.asList(KING, KING, QUEEN), board);
-        System.out.println(solutions);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the board dimensions:");
 
-        board = new Board(4, 4);
-        solutions = PiecesPlacer.place(Arrays.asList(ROOK, ROOK, KNIGHT, KNIGHT, KNIGHT, KNIGHT), board);
-        System.out.println(solutions);
+        System.out.print("M:");
+        int m = scanner.nextInt();
+
+        System.out.print("N:");
+        int n = scanner.nextInt();
+
+        System.out.print("Please enter the piece set (example: KKKQQBBNR):");
+        String piecesStr = scanner.next("[KQBNRkqbnr]+");
+
+        System.out.print("Print all solutions (Y/N)?");
+        boolean shouldPrintAllSolutions = scanner.next("[ynYN]").equalsIgnoreCase("Y");
+
+        List<Piece> pieces = createPieceList(piecesStr);
 
         long start = System.currentTimeMillis();
-        board = new Board(7, 7);
-        solutions = PiecesPlacer.place(Arrays.asList(KING, KING, QUEEN, QUEEN, BISHOP, BISHOP, KNIGHT), board);
-        System.out.println(solutions.size());
-        System.out.println(solutions.iterator().next());
-        System.out.println(System.currentTimeMillis() - start);
+
+        Board board = new Board(m, n);
+        Set<Board> solutions = PiecesPlacer.place(pieces, board);
+
+        long elapsedTime = System.currentTimeMillis() - start;
+
+        if (shouldPrintAllSolutions) {
+            System.out.println("Solutions found:");
+            solutions.forEach(System.out::println);
+        } else {
+            System.out.println("Sample solution:");
+            System.out.println(solutions.iterator().next());
+        }
+        System.out.println(String.format("Number of solutions: %s", solutions.size()));
+        System.out.println(String.format("Processing time: %s ms.", elapsedTime));
     }
 
+    private static List<Piece> createPieceList(String piecesStr) {
+        List<Piece> pieces = new ArrayList<>(piecesStr.length());
+        for (char p : piecesStr.toUpperCase().toCharArray()) {
+            switch (p) {
+                case 'K':
+                    pieces.add(KING);
+                    break;
+                case 'Q':
+                    pieces.add(QUEEN);
+                    break;
+                case 'B':
+                    pieces.add(BISHOP);
+                    break;
+                case 'N':
+                    pieces.add(KNIGHT);
+                    break;
+                case 'R':
+                    pieces.add(ROOK);
+                    break;
+            }
+        }
+        return pieces;
+    }
 }
