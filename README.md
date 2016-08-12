@@ -1,3 +1,4 @@
+```
 Compiling:
 $ mkdir -p build
 $ javac -cp src -d build com/witt/chess/Main.java
@@ -20,3 +21,4 @@ B . . . . . B
 
 Number of solutions: 3063828
 Processing time: 65432 ms.
+```
